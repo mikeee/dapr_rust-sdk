@@ -36,9 +36,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             {
                 Ok(_) => break,
                 Err(err) if attempts < MAX_INVOKE_ATTEMPTS => {
-                    eprintln!(
-                        "Failed to invoke binding on attempt {attempts}; retrying: {err}"
-                    );
+                    eprintln!("Failed to invoke binding on attempt {attempts}; retrying: {err}");
                     tokio::time::sleep(Duration::from_secs(1)).await;
                 }
                 Err(err) => return Err(err.into()),
